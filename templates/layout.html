@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://unpkg.com/htmx.org@1.4.1"
+      integrity="sha384-1P2DfVFAJH2XsYTakfc6eNhTVtyio74YNA1tc6waJ0bO+IfaexSWXc2x62TgBcXe"
+      crossorigin="anonymous">
+    </script>
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+    <div id="header"><h1>{% block header %}{% endblock %}</h1></div>
+    <div id="conteiner">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %}
+      &copy; Copyright 2021 by 
+      <a href="https://wolf.ifj.edu.pl/en/people/pawel-t-jochym">Paweł T. Jochym</a>.
+      {% endblock %}
+    </div>
+  </body>
+</html>

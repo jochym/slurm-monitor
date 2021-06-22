@@ -1,0 +1,237 @@
+#header {
+  width: 100%;
+  background-color: black;
+  color: white;
+  position: sticky;
+  position: -webkit-sticky; /* Safari */
+  top:0;
+}
+
+#header h1 {
+  padding: 4px;
+  margin: 4px;
+
+}
+
+#footer {
+  width:100%;
+  border-style: solid;
+  border-width: 1px 0 0 0;
+  border-color: black;
+  margin-top:10px;
+  padding-top: 5px;
+  text-align: center;
+  clear: both;
+}
+
+#content {
+  width: 100%;
+  background-color: #BBB;
+}
+
+#content .menu {
+/*  background-color: #6B6; */
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  padding: 5px;
+/*  float: left;
+  width: 15%;
+  display: block; */
+}
+
+#content .menu a {
+/*  width: 100%; 
+  display: block;
+  border: solid 0px blue; */
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+  font-size: larger;
+  text-align: center;
+  padding: 5px 10px 5px 10px;
+  margin: 0 5px 0 5px;
+/* margin: 5px; */
+}
+
+#content .menu a.selected {
+  background-color: #448;
+}
+
+#content #view {
+  width: 100%;
+  display: block;
+  background-color: #FFF;
+  float: left;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: smaller;
+}
+
+#view table {
+  width: 100%;
+  border-spacing: 0px;
+  background-color: grey;
+}
+
+#view table caption{
+  padding-bottom: 3px;
+  text-align: left;
+  font-size: larger;
+  font-weight: bold;
+}
+
+#view tr {
+  width: 100%;
+}
+
+#view table tr.header{
+  background-color: #FFD;
+}
+
+#view table tr.odd {
+  background-color: #FFF;
+}
+
+#view table tr.even {
+  background-color: #EEE;
+}
+
+#view table td {
+  padding: 2px;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: lightgrey;
+  text-align: center;
+}
+
+#view table .ra {
+  text-align: right;
+}
+
+#view table .la {
+  text-align: left;
+}
+
+#view table .ca {
+  text-align: center;
+}
+
+#view .rack {
+  position: relative;
+  float:left;
+  padding: 2px;
+  border: solid 2px darkgrey;
+  margin: 10px;
+}
+
+#view .rack_name {
+  left:0;
+  right:0;
+  padding: 2px;
+  border: solid 1px darkgrey;
+  background-color: lightgrey;
+  color: darkgreen;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+#view .small_node {
+  width: 130px;
+  height: 24px;
+  background-color: grey;
+  margin: 1px;
+}
+
+#view .small_node .cores {
+  width: 112px;
+  margin-left: 16px;
+  margin-top: 1px;
+}
+#view .small_node .cores div {
+  /* single core */
+  width:13px;
+  height:3px;
+  margin:1px 0 0 1px;
+  float: left;
+}
+
+#view .blade_node {
+  width: 130px;
+  height: 48px;
+  background-color: grey;
+  margin: 1px;
+}
+
+#view .small_node .name,
+#view .blade_node .name {
+  left: 0;
+  right: 0;
+  height: 12px;
+  padding: 2px 0px 3px 3px;
+  margin-left: 16px;
+  background-color: lightgrey;
+  font-weight: bold;
+}
+
+#view .blade_node .cores {
+  width: 112px;
+  margin-left: 16px;
+  margin-top: 1px;
+}
+
+#view .blade_node .cores div {
+  /* single core */
+  width:6px;
+  height:6px;
+  margin:1px 0 0 1px;
+  float: left;
+}
+
+.cores div.alloc {
+  background-color: orange;
+}
+
+.cores div.free {
+  background-color: lightgrey;
+}
+
+
+#view .LED {
+  margin: 5px;
+  width: 6px;
+  height: 6px;
+  position: absolute;
+}
+
+#view .MIXED\# .LED,
+#view .ALLOCATED\# .LED{
+  background-color: orange;
+}
+
+
+#view .MIXED .LED,
+#view .ALLOCATED .LED {
+  background-color: greenyellow;
+}
+
+#view .IDLE .LED {
+  background-color: royalblue;
+}
+
+#view .POWER .LED {
+  background-color: grey;
+}
+
+#view .ALLOCATED.POWER .LED {
+  background-color: lightgrey;
+}
+
+#view .DOWN .LED {
+  background-color: black;
+}
+
+
+
+

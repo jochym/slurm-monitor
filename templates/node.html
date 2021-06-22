@@ -1,0 +1,16 @@
+<div class="{{ node_type ~ '_node' ~ ' ' ~ node['state'].replace('+',' ') }}">
+<div class="LED"></div>
+<div class="name">{{nid}}</div>
+<div class="cores">
+{% set ns = namespace(cpus=node['cpus']) %}
+{% for jid in jobs if jobs[jid]['job_state']=='RUNNING' %}
+  {% for c in range(jobs[jid]['cpus_allocated'][nid]) %}
+    <div class="alloc" style="background-color:{{ colors[jid] }};" title="Job:{{ jid }}"></div>
+  {% endfor %}
+  {% set ns.cpus = ns.cpus - jobs[jid]['cpus_allocated'][nid] %}
+{% endfor %}
+{% for c in range(ns.cpus) %}
+  <div class="free"></div>
+{% endfor %}
+</div>
+</div>

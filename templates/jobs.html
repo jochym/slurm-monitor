@@ -1,0 +1,32 @@
+<div id=jobs-refresher> 
+  {% include 'menu.html' %}
+  <div id="view">
+    <table>
+      <caption>Jobs:<caption>
+      <tr class='header'>
+        <th>ID</th>
+        <th>User</th>
+        <th>State</th>
+        <th class="ra">Run time</th>
+        <th>Nodes (Cores)</th>
+      </tr>
+      {% for jid in data %}
+        <tr class="{{ loop.cycle('odd', 'even') }}">
+          <td>{{ jid }}</td>
+          <td>{{ data[jid]['login'] }}({{ data[jid]['username'] }})</td>
+          <td>{{ data[jid]['job_state'] }}</td>
+          <td class="ra">{{ data[jid]['run_time_str'] }}</td>
+          <td>
+           {% for nd in data[jid]['cpus_allocated'] %}
+              {{nd}}({{ data[jid]['cpus_allocated'][nd] }})
+           {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+      </table>
+  </div>
+  <div hx-get="/jobs"
+     hx-trigger="every 60s"
+     hx-swap="#jobs-refresher"></div>
+</div>
+

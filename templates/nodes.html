@@ -1,0 +1,30 @@
+<div id=nodes-refresher> 
+  {% include 'menu.html' %}
+  <div id="view">
+    {% for nid, node in nodel | dictsort if nid.startswith('bl') %}
+      {% set jobs = jobl[nid] %}
+      {% if loop.index0 % 10 == 0 %}
+        {% if loop.index0 > 0 %}
+          </div>
+        {% endif %}
+        <div class="rack">
+        <div class="rack_name">Blade {{ (loop.index // 10) + 1 }} </div>
+      {% endif %}
+      {% set node_type = 'blade' %}
+      {% include 'node.html' %}
+    {% endfor %}
+    </div>
+    <div class="rack">
+    <div class="rack_name">Rack 1</div>    
+    {% for nid, node in nodel | dictsort if nid.startswith('h') %}
+      {% set jobs = jobl[nid] %}
+      {% set node_type = 'small' %}
+      {% include 'node.html' %}
+    {% endfor %}
+    </div>
+  </div>
+  <div hx-get="/nodes"
+     hx-trigger="every 15s"
+     hx-swap="#nodes-refresher"></div>
+</div>
+

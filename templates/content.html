@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Cluster Monitor{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block header %}
+Cluster Monitor
+{% endblock %}
+
+{% block content %}
+<div id="content" 
+      hx-get="/jobs" 
+      hx-trigger="load after:100ms" 
+      hx-target="#content" hx-swap="innerHTML"></div>
+{% endblock %}
