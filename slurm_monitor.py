@@ -4,10 +4,8 @@ import requests
 import json
 
 app = Flask(__name__)
-app.debug = True
 
 resturl='http://10.0.1.20/slurm-restapi/'
-
 
 @app.route("/")
 def index():
@@ -29,10 +27,4 @@ def nodes():
     clrl = ('orange','green','blueviolet','crimson','navy','darkgreen', 'purple', 'seagreen')
     colors = {jid:clrl[cn % len(clrl)] for cn, jid in enumerate(json.loads(resp.text))}
     return render_template('nodes.html', selected="nodes", nodel=nodel, jobl=jobl, colors=colors)
-
-@app.route("/nop")
-def nop():
-    return render_template('nop.html', selected="")
-
-
 
