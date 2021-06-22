@@ -10,7 +10,7 @@ Cluster Monitor
 
 {% block content %}
 <div id="content" 
-      hx-get="{{ resturl }}/jobs" 
+      hx-get="jobs" 
       hx-trigger="load after:100ms" 
       hx-target="#content" hx-swap="innerHTML"></div>
 {% endblock %}
