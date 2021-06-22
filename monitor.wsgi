@@ -1,4 +1,4 @@
-import sys
-sys.path.insert(0, '//to/the/application')
+import sys, os
+sys.path.insert(0, os.path.abspath(sys.argv[0] + '/..'))
 
 from slurm_monitor import app as application
