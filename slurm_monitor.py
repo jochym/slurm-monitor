@@ -11,7 +11,7 @@ resturl='http://10.0.1.20/slurm-restapi/'
 
 @app.route("/")
 def index():
-    return render_template('content.html', selected="")
+    return render_template('content.html', resturl=resturl, selected="")
 
 
 @app.route("/jobs")
