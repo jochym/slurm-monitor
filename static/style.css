@@ -51,6 +51,7 @@
   text-align: center;
   padding: 5px 10px 5px 10px;
   margin: 0 5px 0 5px;
+  cursor: pointer;
 /* margin: 5px; */
 }
 
@@ -60,7 +61,7 @@
 
 #content #view {
   width: 100%;
-  display: block;
+  display: flex;
   background-color: #FFF;
   float: left;
   padding: 10px;
@@ -69,9 +70,12 @@
 }
 
 #view table {
-  width: 100%;
+  width: 98%;
+  flex-grow: 1;
+  table-layout: fixed;
   border-spacing: 0px;
   background-color: grey;
+  min-width: 400px;
 }
 
 #view table caption{
@@ -125,6 +129,16 @@
   margin: 10px;
 }
 
+#view .joblist {
+    float:left;
+    width: auto;
+}
+
+#view .smallbox {
+    width: 8px;
+    height: 8px;
+}
+
 #view .rack_name {
   left:0;
   right:0;
@@ -159,7 +173,7 @@
 
 #view .blade_node {
   width: 130px;
-  height: 48px;
+  height: 49px;
   background-color: grey;
   margin: 1px;
 }
@@ -173,6 +187,10 @@
   margin-left: 16px;
   background-color: lightgrey;
   font-weight: bold;
+}
+
+#view .blade_node .name {
+  height: 13px;
 }
 
 #view .blade_node .cores {

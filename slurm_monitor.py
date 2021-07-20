@@ -22,9 +22,17 @@ def nodes():
     resp = requests.get(resturl+'nodes')
     nodel = json.loads(resp.text)
     resp = requests.get(resturl+'jobs-by-nodes')
-    jobl = json.loads(resp.text)
+    jobl = {k:v for k, v in json.loads(resp.text).items() if v}
     resp = requests.get(resturl+'jobs')
+    jobl_byid = json.loads(resp.text)
     clrl = ('orange','green','blueviolet','crimson','navy','darkgreen', 'purple', 'seagreen')
-    colors = {jid:clrl[cn % len(clrl)] for cn, jid in enumerate(json.loads(resp.text))}
+    colors = {jid:clrl[cn % len(clrl)] for cn, jid in enumerate(jobl_byid)}
+    odd = True
+    for n, j in jobl.items():
+        for jid, v in j.items():
+            v['login']=jobl_byid[jid]['login']
+            v['username']=jobl_byid[jid]['username']
+            v['row'] = 'odd' if odd else 'even'
+            odd = not odd
     return render_template('nodes.html', selected="nodes", nodel=nodel, jobl=jobl, colors=colors)
 

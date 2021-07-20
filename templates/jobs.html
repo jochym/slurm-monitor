@@ -5,6 +5,7 @@
       <caption>Jobs:<caption>
       <tr class='header'>
         <th>ID</th>
+        <th>Name</th>
         <th>User</th>
         <th>State</th>
         <th class="ra">Run time</th>
@@ -13,7 +14,8 @@
       {% for jid in data %}
         <tr class="{{ loop.cycle('odd', 'even') }}">
           <td>{{ jid }}</td>
-          <td>{{ data[jid]['login'] }}({{ data[jid]['username'] }})</td>
+          <td>{{ data[jid]['name'] }} 
+          <td>{{ data[jid]['login'] }}</td>
           <td>{{ data[jid]['job_state'] }}</td>
           <td class="ra">{{ data[jid]['run_time_str'] }}</td>
           <td>
