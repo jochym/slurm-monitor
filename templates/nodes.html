@@ -22,6 +22,43 @@
       {% include 'node.html' %}
     {% endfor %}
     </div>
+  <div class='joblist'>
+    <table>
+      <caption>Assigned jobs:<caption>
+      <tr class='header'>
+        <th>Colour</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>State</th>
+        <th class="ra">Run time</th>
+        <th>Nodes</th>
+        <th>Cores</th>
+      </tr>
+      {% for nid in jobl %} 
+      {% for jid, job in jobl[nid].items() %}
+        <tr class="{{ loop.cycle('odd', 'even') }}">
+            <td style="background-color:{{ colors[jid] }};">&nbsp;</td>
+            <td>{{ jid }}</td>
+          <td>{{ job['name'] }}</td>
+          <td>{{ job['job_state'] }}</td>
+          <td class="ra">{{ job['run_time_str'] }}</td>
+          <td>
+           {% for nd in job['cpus_allocated'] %}
+              {{nd}} 
+              {{ "" if loop.last else "," }}
+           {% endfor %}
+          </td>
+          <td>
+           {% for nd in job['cpus_allocated'] %}
+              {{ job['cpus_allocated'][nd] }}
+              {{ "" if loop.last else "," }}
+           {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+      {% endfor %}
+    </table>
+  </div>
   </div>
   <div hx-get="nodes"
      hx-trigger="every 15s"

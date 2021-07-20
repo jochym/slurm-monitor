@@ -70,6 +70,7 @@
 
 #view table {
   width: 100%;
+  table-layout: fixed;
   border-spacing: 0px;
   background-color: grey;
 }
@@ -123,6 +124,17 @@
   padding: 2px;
   border: solid 2px darkgrey;
   margin: 10px;
+}
+
+#view .joblist {
+    float:right;
+    clear: both;
+    width: auto;
+}
+
+#view .smallbox {
+    width: 8px;
+    height: 8px;
 }
 
 #view .rack_name {
