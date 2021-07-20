@@ -9,7 +9,7 @@ Beware - this is a weekend hack project. I got it working in literal 12 hours, s
 
 ## Installation
 
-You need to install it from source for now. I know this is suboptimal. It is a standard Flask app you. You need Flask, Jinja, requests and pyjason in your venv. Otherwise, just follow standard Flask install docs.
+You need to install it from source for now. I know this is suboptimal. It is a standard, simple Flask app. You need Flask, Jinja2, requests and pyjason in your venv. Otherwise, just follow standard Flask install docs.
 
 ## Configuration
 
