@@ -26,8 +26,9 @@
     <table>
       <caption>Assigned jobs:<caption>
       <tr class='header'>
-        <th>Colour</th>
+        <th width=20>&nbsp;</th>
         <th>ID</th>
+        <th>User</th>
         <th>Name</th>
         <th>State</th>
         <th class="ra">Run time</th>
@@ -35,13 +36,14 @@
         <th>Cores</th>
       </tr>
       {% for nid in jobl %} 
-      {% for jid, job in jobl[nid].items() %}
-        <tr class="{{ loop.cycle('odd', 'even') }}">
-            <td style="background-color:{{ colors[jid] }};">&nbsp;</td>
-            <td>{{ jid }}</td>
+        {% for jid, job in jobl[nid].items() %}
+          <tr class="{{ job['row'] }}">
+          <td style="background-color:{{ colors[jid] }};">&nbsp;</td>
+          <td>{{ jid }}</td>
+          <td>{{ job['login'] }}</td>
           <td>{{ job['name'] }}</td>
-          <td>{{ job['job_state'] }}</td>
-          <td class="ra">{{ job['run_time_str'] }}</td>
+          <td>{{ job['job_state'][:3] }}.</td>
+          <td class="ra">{{ job['run_time_str'][:-3] }}</td>
           <td>
            {% for nd in job['cpus_allocated'] %}
               {{nd}} 
@@ -55,7 +57,7 @@
            {% endfor %}
           </td>
         </tr>
-      {% endfor %}
+        {% endfor %}
       {% endfor %}
     </table>
   </div>
