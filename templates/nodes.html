@@ -35,29 +35,17 @@
         <th>Nodes</th>
         <th>Cores</th>
       </tr>
-      {% for nid in jobl %} 
-        {% for jid, job in jobl[nid].items() %}
-          <tr class="{{ job['row'] }}">
-          <td style="background-color:{{ colors[jid] }};">&nbsp;</td>
-          <td>{{ jid }}</td>
-          <td>{{ job['login'] }}</td>
-          <td>{{ job['name'] }}</td>
-          <td>{{ job['job_state'][:3] }}.</td>
-          <td class="ra">{{ job['run_time_str'][:-3] }}</td>
-          <td>
-           {% for nd in job['cpus_allocated'] %}
-              {{nd}} 
-              {{ "" if loop.last else "," }}
-           {% endfor %}
-          </td>
-          <td>
-           {% for nd in job['cpus_allocated'] %}
-              {{ job['cpus_allocated'][nd] }}
-              {{ "" if loop.last else "," }}
-           {% endfor %}
-          </td>
-        </tr>
-        {% endfor %}
+      {% for jid, job in jalloc.items() %}
+        <tr class="{{ loop.cycle('odd', 'even') }}">
+        <td style="background-color:{{ colors[jid] }};">&nbsp;</td>
+        <td>{{ jid }}</td>
+        <td>{{ job['login'] }}</td>
+        <td>{{ job['name'] }}</td>
+        <td>{{ job['job_state'] }}</td>
+        <td class="ra">{{ job['run_time_str'][:-3] }}</td>
+        <td>{{job['num_nodes']}}: {{job['nodes']}}</td>
+        <td>{{job['num_cpus']}}</td>
+      </tr>
       {% endfor %}
     </table>
   </div>

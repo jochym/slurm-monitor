@@ -255,7 +255,8 @@
 }
 
 #view .DOWN .LED,
-#view .DOWN\$ .LED {
+#view .DOWN\$ .LED,
+#view .DOWN\* .LED {
   background-color: black;
 }
 

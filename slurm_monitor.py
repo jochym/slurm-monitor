@@ -27,12 +27,6 @@ def nodes():
     jobl_byid = json.loads(resp.text)
     clrl = ('orange','green','blueviolet','crimson','navy','darkgreen', 'purple', 'seagreen')
     colors = {jid:clrl[cn % len(clrl)] for cn, jid in enumerate(jobl_byid)}
-    odd = True
-    for n, j in jobl.items():
-        for jid, v in j.items():
-            v['login']=jobl_byid[jid]['login']
-            v['username']=jobl_byid[jid]['username']
-            v['row'] = 'odd' if odd else 'even'
-            odd = not odd
-    return render_template('nodes.html', selected="nodes", nodel=nodel, jobl=jobl, colors=colors)
+    jobl_alloc = {i:j for i, j in jobl_byid.items() if 'nodeset' in j and j['nodeset']}
+    return render_template('nodes.html', selected="nodes", nodel=nodel, jobl=jobl, colors=colors, jalloc=jobl_alloc)
 
