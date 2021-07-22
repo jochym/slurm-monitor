@@ -1,6 +1,6 @@
 {% block menu %}
     <div class="menu">
-      <a hx-get="nodes" {% if selected == 'nodes' %} class="selected" {% endif %}>Nodes</a>
-      <a hx-get="jobs" {% if selected == 'jobs' %} class="selected" {% endif %}>Jobs</a>
+      <a hx-get="nodes" {% if selected == 'nodes' %} class="selected" {% endif %} tabindex=1>Nodes</a>
+      <a hx-get="jobs" {% if selected == 'jobs' %} class="selected" {% endif %} tabindex=2>Jobs</a>
     </div>
 {% endblock %}

@@ -230,9 +230,16 @@
 
 
 #view .MIXED .LED,
-#view .ALLOCATED .LED {
+#view .ALLOCATED .LED,
+#view .ALLOCATED\$ .LED {
   background-color: greenyellow;
 }
+
+
+#view .MAINT .LED {
+  background-color: yellow;
+}
+
 
 #view .IDLE .LED {
   background-color: royalblue;
@@ -242,11 +249,13 @@
   background-color: grey;
 }
 
-#view .ALLOCATED.POWER .LED {
+#view .ALLOCATED.POWER .LED,
+#view .MAINT.POWER .LED {
   background-color: lightgrey;
 }
 
-#view .DOWN .LED {
+#view .DOWN .LED,
+#view .DOWN\$ .LED {
   background-color: black;
 }
 
