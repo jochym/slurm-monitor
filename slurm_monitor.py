@@ -5,7 +5,14 @@ import json
 
 app = Flask(__name__)
 
-resturl='http://10.0.1.20/slurm-restapi/'
+resturl='http://slurm/slurm-restapi/'
+resturl='http+unix://%2Frun%2Fslurmrestd%2Fslurmrestd.socket/slurm/v0.0.38/'
+
+if resturl.startswith('http+unix'):
+    import requests_unixsocket
+    requests_unixsocket.monkeypatch()
+
+
 
 @app.route("/")
 def index():
