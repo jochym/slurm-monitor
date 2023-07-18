@@ -2,7 +2,7 @@
 Web monitor for the slurm cluster. This project is born out of the frustration with brittleness and complication of slurm-web project which looks nice and when it works is very useful but it is enough to look at it the wrong way for it to brake. 
 
 
-So I decided to build simpler solution for my cluster. I have used [HTMX](http://htmx.org/) to build active parts (without single javascript line), Flask and jinja for application server and slurmrestd's REST API server. The final product is highly specific to my environment - especially the nodes display template and logic. But it is very easy to adapt to different circumstances. Here it is showing status of my cluster.
+So I decided to build simpler solution for my cluster. I have used [HTMX](http://htmx.org/) to build active parts (without a single javascript line), Flask and jinja for application server and slurmrestd's REST API server. The final product is highly specific to my environment - especially the nodes display template and logic. But it is very easy to adapt to different circumstances. Here it is showing status of my cluster.
 
 ![](slurm-monitor.png)
 
@@ -15,7 +15,7 @@ Beware - this is a weekend hack project. I got it working in literal 12 hours an
 
 You need to install it from source for now. I know this is suboptimal. But, it is a standard, simple Flask app. It needs Flask+Jinja2 and httpx. Just follow standard Flask install docs. Below are my notes reproducing installation on my system. If you spot any errors, please let me know!
 
-Following text assumes that you have `apache2` and `slurmrestd` running on the same host, configured to run as `www-data` user and listening on unix socket `/run/slurmrestd/slurmrestd.socket`. You need to make sure it works first. You can verify it using `curl` (as www-data user ar as root. If it works only as root you have to check the user of the slurmresd service):
+Following text assumes that you have `apache2` and `slurmrestd` running on the same host, configured to run as `www-data` user and listening on unix socket `/run/slurmrestd/slurmrestd.socket`. You need to make sure it works first. You can verify it using `curl` (as www-data user or as root. If it works only as root you have to check the user of the slurmrestd service):
 ```
 curl --unix-socket /run/slurmrestd/slurmrestd.socket localhost/slurm/v0.0.38/ping
 ```
@@ -79,14 +79,14 @@ The basic install steps are as follows:
     source venv/bin/activate
     pip install flask httpx
     ```
-- Make symbolic links from the cloned repo to this directory. This way you can update the the install by simple `git pull` in your clone. You can also easily fork your clone to adapt the package to your system. Again run this inside `/var/www/cluster` directory:
+- Make symbolic links from the cloned repo to this directory. This way you can update the install by simple `git pull` in your clone. You can also easily fork your clone to adapt the package to your system. Again, run this inside `/var/www/cluster` directory:
     ```
     ln -s /home/user/slurm-monitor/{slurm_monitor.py,monitor.wsgi,static,templates} .
     ```
 
 ## Configuration
 
-As a minimum you will need to change restapi server URL in `app.py` and probably modify `templates/nodes.html` and `templates/node.html` to fit your setup. To make your work easier you can use flask's development server. In your clone make a virtual environment with `flask` and `httpx`. Switch to the correct user (e.g. `www-data`) activate the environment and run in the flask development server. First create the virtual environment (you need to do this onluy once):
+As a minimum you will need to change restapi server URL in `slurm_monitor.py` and probably modify `templates/nodes.html` and `templates/node.html` to fit your setup. To make your work easier you can use flask's development server. In your clone make a virtual environment with `flask` and `httpx`. Switch to the correct user (e.g. `www-data`) activate the environment and run in the flask development server. First create the virtual environment (you need to do this only once):
 ```
 cd slurm-monitor
 python3 -m venv venv 
