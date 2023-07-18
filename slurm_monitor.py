@@ -78,6 +78,8 @@ def nodes():
             n['load'] = 0
         else :
             n['load'] = n['cpu_load']/n['cpus']
+        if n['load'] > 1.1 :
+            n['load'] = 0
     
     resp = client.get('/jobs')
     if resp.status_code != 200:
