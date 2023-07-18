@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import render_template
-import json
 import httpx
 import time
 from collections import defaultdict
