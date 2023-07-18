@@ -19,9 +19,11 @@
           <td>{{ data[jid]['job_state'] }}</td>
           <td class="ra">{{ data[jid]['run_time_str'] }}</td>
           <td>
-           {% for nd in data[jid]['cpus_allocated'] %}
-              {{nd}}({{ data[jid]['cpus_allocated'][nd] }})
-           {% endfor %}
+            {% if data[jid]['cpus_allocated'] %}
+            {{data[jid]['cpus_allocated'][0]}} ({{ data[jid]['cpus_allocated'][1] }})
+            {% else %}
+            {{data[jid]['cpus_requested'][0]}} ({{ data[jid]['cpus_requested'][1] }})
+            {% endif %}
           </td>
         </tr>
       {% endfor %}
