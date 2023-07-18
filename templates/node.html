@@ -1,16 +1,19 @@
 <div class="{{ node_type ~ '_node' ~ ' ' ~ node['state'].replace('+',' ') }}">
 <div class="LED"></div>
-<div class="name">{{nid}}</div>
+<div class="name">{{nid}}
+  <meter min="0" max="100" value="{{ node['load'] }}"></meter>
+</div>
 <div class="cores">
-{% set ns = namespace(cpus=node['cpus']) %}
-{% for jid in jobs if jobs[jid]['job_state']=='RUNNING' %}
-  {% for c in range(jobs[jid]['cpus_allocated'][nid]) %}
-    <div class="alloc" style="background-color:{{ colors[jid] }};" title="Job:{{ jid }}"></div>
+  {% for s in range(node['sockets']) %}
+    {% for c in range(node['cores']) %}
+      {% if nid in assoc and (s,c) in assoc[nid] %}
+      <div class="alloc" 
+           style="background-color:{{ colors[assoc[nid][(s,c)]] }};" 
+           title="Job:{{ assoc[nid][(s,c)] }}"></div>
+      {% else %}
+      <div class="free"></div>
+      {% endif %}
+    {% endfor %}
   {% endfor %}
-  {% set ns.cpus = ns.cpus - jobs[jid]['cpus_allocated'][nid] %}
-{% endfor %}
-{% for c in range(ns.cpus) %}
-  <div class="free"></div>
-{% endfor %}
 </div>
 </div>

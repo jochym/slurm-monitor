@@ -132,6 +132,7 @@
 #view .joblist {
     float:left;
     width: auto;
+    margin-top: 1ex;
 }
 
 #view .smallbox {
@@ -229,6 +230,8 @@
 }
 
 
+#view .mixed .LED,
+#view .allocated .LED,
 #view .MIXED .LED,
 #view .ALLOCATED .LED,
 #view .ALLOCATED\$ .LED {
@@ -241,6 +244,7 @@
 }
 
 
+#view .idle .LED,
 #view .IDLE .LED {
   background-color: royalblue;
 }
@@ -254,6 +258,7 @@
   background-color: lightgrey;
 }
 
+#view .down .LED,
 #view .DOWN .LED,
 #view .DOWN\$ .LED,
 #view .DOWN\* .LED {

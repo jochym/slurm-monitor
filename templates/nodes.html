@@ -1,8 +1,10 @@
 <div id=nodes-refresher> 
   {% include 'menu.html' %}
   <div id="view">
-    {% for nid, node in nodel | dictsort if nid.startswith('bl') %}
-      {% set jobs = jobl[nid] %}
+    <div id="racks">
+    {% set blades = False %}
+    {% for nid, node in nodes | dictsort if nid.startswith('bl') %}
+      {% set blades = True %}
       {% if loop.index0 % 10 == 0 %}
         {% if loop.index0 > 0 %}
           </div>
@@ -13,14 +15,16 @@
       {% set node_type = 'blade' %}
       {% include 'node.html' %}
     {% endfor %}
-    </div>
+    {% if blades %}
+      </div>
+    {% endif %}
     <div class="rack">
     <div class="rack_name">Rack 1</div>    
-    {% for nid, node in nodel | dictsort if nid.startswith('h') %}
-      {% set jobs = jobl[nid] %}
+    {% for nid, node in nodes | dictsort if nid.startswith('h') %}
       {% set node_type = 'small' %}
       {% include 'node.html' %}
     {% endfor %}
+    </div>
     </div>
   <div class='joblist'>
     <table>
@@ -32,26 +36,29 @@
         <th>Name</th>
         <th>State</th>
         <th class="ra">Run time</th>
-        <th>Nodes</th>
-        <th>Cores</th>
+        <th>Nodes (Cores)</th>
       </tr>
-      {% for jid, job in jalloc.items() %}
+      {% for jid, job in jobs.items() %}
         <tr class="{{ loop.cycle('odd', 'even') }}">
         <td style="background-color:{{ colors[jid] }};">&nbsp;</td>
         <td>{{ jid }}</td>
         <td>{{ job['login'] }}</td>
         <td>{{ job['name'] }}</td>
         <td>{{ job['job_state'] }}</td>
-        <td class="ra">{{ job['run_time_str'][:-3] }}</td>
-        <td>{{job['num_nodes']}}: {{job['nodes']}}</td>
-        <td>{{job['num_cpus']}}</td>
+        <td class="ra">{{ job['run_time_str'] }}</td>
+        <td>
+          {% if job['cpus_allocated'] %}
+            {{job['cpus_allocated'][0]}} ({{ job['cpus_allocated'][1] }})
+          {% endif %}
+        </td>
       </tr>
       {% endfor %}
     </table>
   </div>
   </div>
   <div hx-get="nodes"
-     hx-trigger="every 15s"
-     hx-swap="#nodes-refresher"></div>
+     hx-trigger="every 150s"
+     hx-swap="#nodes-refresher">
+  </div>
 </div>
 

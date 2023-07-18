@@ -21,6 +21,8 @@
           <td>
             {% if data[jid]['cpus_allocated'] %}
             {{data[jid]['cpus_allocated'][0]}} ({{ data[jid]['cpus_allocated'][1] }})
+            {% else %}
+            {{data[jid]['cpus_requested'][0]}} ({{ data[jid]['cpus_requested'][1] }})
             {% endif %}
           </td>
         </tr>
