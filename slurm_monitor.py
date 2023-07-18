@@ -74,7 +74,7 @@ def nodes():
 
     nodes = {n['name']:n for n in resp.json()['nodes']}
     for nid, n in nodes.items():
-        if n['state'] not in {'idle', 'allocated'}:
+        if n['state'] not in {'idle', 'allocated', 'mixed'}:
             n['load'] = 0
         else :
             n['load'] = n['cpu_load']/n['cpus']
