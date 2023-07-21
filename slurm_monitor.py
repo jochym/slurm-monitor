@@ -74,11 +74,12 @@ def nodes():
 
     nodes = {n['name']:n for n in resp.json()['nodes']}
     for nid, n in nodes.items():
-        if n['state'] not in {'idle', 'allocated', 'mixed'}:
-            n['load'] = 0
-        else :
+        if n['state'] in {'idle', 'allocated', 'mixed'}:
             n['load'] = n['cpu_load']/n['cpus']
-        if n['load'] > 1.1 :
+        else:
+            n['load'] = 0
+
+        if n['load'] > 110 :
             n['load'] = 0
     
     resp = client.get('/jobs')

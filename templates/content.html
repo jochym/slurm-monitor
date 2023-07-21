@@ -11,6 +11,6 @@ Cluster Monitor
 {% block content %}
 <div id="content" 
       hx-get="nodes" 
-      hx-trigger="load after:100ms" 
+      hx-trigger="load delay:100ms" 
       hx-target="#content" hx-swap="innerHTML"></div>
 {% endblock %}
