@@ -5,6 +5,7 @@ import time
 from collections import defaultdict
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 resturl='http://slurm/slurm-restapi/'
 resturl='/run/slurmrestd/slurmrestd.socket'
