@@ -5,6 +5,7 @@ import time
 from collections import defaultdict
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 resturl='http://slurm/slurm-restapi/'
 resturl='/run/slurmrestd/slurmrestd.socket'
@@ -74,10 +75,13 @@ def nodes():
 
     nodes = {n['name']:n for n in resp.json()['nodes']}
     for nid, n in nodes.items():
-        if n['state'] not in {'idle', 'allocated'}:
-            n['load'] = 0
-        else :
+        if n['state'] in {'idle', 'allocated', 'mixed'}:
             n['load'] = n['cpu_load']/n['cpus']
+        else:
+            n['load'] = 0
+
+        if n['load'] > 110 :
+            n['load'] = 0
     
     resp = client.get('/jobs')
     if resp.status_code != 200:

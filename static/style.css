@@ -121,6 +121,10 @@
   text-align: center;
 }
 
+#view #racks {
+  display: flex;
+}
+
 #view .rack {
   position: relative;
   float:left;

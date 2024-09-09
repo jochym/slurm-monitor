@@ -2,9 +2,9 @@
   {% include 'menu.html' %}
   <div id="view">
     <div id="racks">
-    {% set blades = False %}
+    {% set blades = namespace(faund=False) %}
     {% for nid, node in nodes | dictsort if nid.startswith('bl') %}
-      {% set blades = True %}
+      {% set blades.found = True %}
       {% if loop.index0 % 10 == 0 %}
         {% if loop.index0 > 0 %}
           </div>
@@ -15,7 +15,7 @@
       {% set node_type = 'blade' %}
       {% include 'node.html' %}
     {% endfor %}
-    {% if blades %}
+    {% if blades.found %}
       </div>
     {% endif %}
     <div class="rack">
